@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import img from "../../assets/images/login/login.svg";
 
 const Login = () => {
@@ -21,6 +22,7 @@ const Login = () => {
                   <span className="label-text">Email</span>
                 </label>
                 <input
+                  name="email"
                   type="text"
                   placeholder="email"
                   className="input input-bordered"
@@ -31,6 +33,7 @@ const Login = () => {
                   <span className="label-text">Password</span>
                 </label>
                 <input
+                  name="password"
                   type="text"
                   placeholder="password"
                   className="input input-bordered"
@@ -49,6 +52,15 @@ const Login = () => {
                 />
               </div>
             </form>
+            <p>
+              New to Car Doctor?{" "}
+              <Link
+                to="/signup"
+                className="text-orange-500 font-bold text-center"
+              >
+                Sign Up
+              </Link>{" "}
+            </p>
           </div>
         </div>
       </div>
