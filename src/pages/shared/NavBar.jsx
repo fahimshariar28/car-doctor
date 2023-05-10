@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo.svg";
+import { useContext } from "react";
+import { AuthContext } from "../../Providers/AuthProvider";
 
 const NavBar = () => {
+  const { user, logOut } = useContext(AuthContext);
   const navItem = (
     <>
       <li>
@@ -10,6 +13,15 @@ const NavBar = () => {
       <li>
         <Link to="/about">About</Link>
       </li>
+      {!user ? (
+        <li>
+          <Link to="/login">Log In</Link>
+        </li>
+      ) : (
+        <li>
+          <button onClick={logOut}>Log Out</button>
+        </li>
+      )}
     </>
   );
   return (
