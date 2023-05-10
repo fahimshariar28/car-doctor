@@ -2,9 +2,11 @@ import { Link, useNavigate } from "react-router-dom";
 import img from "../../assets/images/login/login.svg";
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
+import { FaFacebook, FaGithub, FaGoogle } from "react-icons/fa";
 
 const Login = () => {
-  const { signIn } = useContext(AuthContext);
+  const { signIn, signInWithGoogle, signInWithGitHub, signInWithFacebook } =
+    useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
@@ -23,6 +25,43 @@ const Login = () => {
         console.log(error.message);
       });
   };
+
+  const handleGoogleLogin = () => {
+    signInWithGoogle()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+
+  const handleGitHubLogin = () => {
+    signInWithGitHub()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+
+  const handleFacebookLogin = () => {
+    signInWithFacebook()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+
   return (
     <div className="hero min-h-screen bg-base-200">
       <div className="hero-content flex-col lg:flex-row">
@@ -70,6 +109,19 @@ const Login = () => {
                 />
               </div>
             </form>
+            <p className="text-center">Or SignUp With</p>
+            <div className="text-2xl text-orange-500 flex justify-center gap-5 my-3">
+              <button onClick={handleGoogleLogin}>
+                <FaGoogle></FaGoogle>
+              </button>
+              <button onClick={handleFacebookLogin}>
+                <FaFacebook></FaFacebook>
+              </button>
+              <button onClick={handleGitHubLogin}>
+                <FaGithub></FaGithub>
+              </button>
+            </div>
+            <p></p>
             <p>
               New to Car Doctor?{" "}
               <Link
