@@ -2,6 +2,9 @@ import { Link, useNavigate } from "react-router-dom";
 import img from "../../assets/images/login/login.svg";
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
+import { getAuth, updateProfile } from "firebase/auth";
+import app from "../../firebase/firebase.config";
+const auth = getAuth(app);
 
 const SignUp = () => {
   const { createUser } = useContext(AuthContext);
@@ -18,6 +21,19 @@ const SignUp = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        updateProfile(auth.currentUser, {
+          displayName: name,
+        })
+          .then(() => {
+            // Profile updated!
+            // ...
+          })
+          .catch((error) => {
+            // An error occurred
+            // ...
+            console.log(error.message);
+          });
+
         navigate("/");
       })
       .catch((error) => {
