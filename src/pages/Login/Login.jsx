@@ -19,7 +19,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        navigate("/");
+        navigate(form || "/");
       })
       .catch((error) => {
         console.log(error.message);

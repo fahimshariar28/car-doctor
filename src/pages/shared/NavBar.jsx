@@ -18,9 +18,14 @@ const NavBar = () => {
           <Link to="/login">Log In</Link>
         </li>
       ) : (
-        <li>
-          <button onClick={logOut}>Log Out</button>
-        </li>
+        <>
+          <li>
+            <Link to="bookings">My Bookings</Link>
+          </li>
+          <li>
+            <button onClick={logOut}>Log Out</button>
+          </li>
+        </>
       )}
     </>
   );
