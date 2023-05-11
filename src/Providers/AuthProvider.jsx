@@ -51,6 +51,7 @@ const AuthProvider = ({ children }) => {
     signOut(auth)
       .then(() => {
         // Sign-out successful.
+        setLoading(true);
       })
       .catch((error) => {
         // An error happened.
