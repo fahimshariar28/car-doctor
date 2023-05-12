@@ -119,7 +119,7 @@ const SignUp = () => {
                 </label>
                 <input
                   name="password"
-                  type="text"
+                  type="password"
                   placeholder="password"
                   className="input input-bordered"
                 />

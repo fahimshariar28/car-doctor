@@ -13,7 +13,7 @@ const Bookings = () => {
         setBookings(data);
         console.log(data);
       });
-  }, []);
+  }, [url]);
   const handleDelete = (id) => {
     const proceed = confirm("Are You sure you want to delete");
     if (proceed) {

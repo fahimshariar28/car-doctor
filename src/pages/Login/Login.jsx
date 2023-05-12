@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import img from "../../assets/images/login/login.svg";
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
@@ -8,6 +8,8 @@ const Login = () => {
   const { signIn, signInWithGoogle, signInWithGitHub, signInWithFacebook } =
     useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state?.from?.pathname || "/";
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -19,7 +21,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        navigate(form || "/");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.log(error.message);
@@ -31,7 +33,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        navigate("/");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.log(error.message);
@@ -43,7 +45,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        navigate("/");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.log(error.message);
@@ -55,7 +57,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        navigate("/");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.log(error.message);
@@ -91,7 +93,7 @@ const Login = () => {
                 </label>
                 <input
                   name="password"
-                  type="text"
+                  type="password"
                   placeholder="password"
                   className="input input-bordered"
                 />
