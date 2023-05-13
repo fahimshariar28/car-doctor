@@ -21,7 +21,6 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        navigate(from, { replace: true });
         const loggedInUser = {
           email: user.email,
         };
@@ -36,6 +35,7 @@ const Login = () => {
           .then((data) => {
             console.log("JWT Response", data);
             localStorage.setItem("car-access-token", data.token);
+            navigate(from, { replace: true });
           });
       })
       .catch((error) => {
