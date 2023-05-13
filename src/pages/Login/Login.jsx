@@ -21,22 +21,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        const loggedInUser = {
-          email: user.email,
-        };
-        fetch("http://localhost:5000/jwt", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(loggedInUser),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            console.log("JWT Response", data);
-            localStorage.setItem("car-access-token", data.token);
-            navigate(from, { replace: true });
-          });
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.log(error.message);

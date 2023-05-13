@@ -52,7 +52,6 @@ const AuthProvider = ({ children }) => {
       .then(() => {
         // Sign-out successful.
         setLoading(true);
-        localStorage.removeItem("car-access-token");
       })
       .catch((error) => {
         // An error happened.
@@ -65,6 +64,25 @@ const AuthProvider = ({ children }) => {
       setUser(currentUser);
       console.log("Current User", currentUser);
       setLoading(false);
+      const loggedInUser = {
+        email: currentUser?.email,
+      };
+      if (currentUser && currentUser.email) {
+        fetch("http://localhost:5000/jwt", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(loggedInUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log("JWT Response", data);
+            localStorage.setItem("car-access-token", data.token);
+          });
+      } else {
+        localStorage.removeItem("car-access-token");
+      }
     });
     return () => {
       return unsubscribe();
