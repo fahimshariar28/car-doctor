@@ -52,6 +52,7 @@ const AuthProvider = ({ children }) => {
       .then(() => {
         // Sign-out successful.
         setLoading(true);
+        localStorage.removeItem("car-access-token");
       })
       .catch((error) => {
         // An error happened.
