@@ -25,7 +25,7 @@ const CheckOut = () => {
       service_id: _id,
     };
     console.log(bookings);
-    fetch("http://localhost:5000/bookings", {
+    fetch("https://car-doctor-server-fahimshariar28.vercel.app/bookings", {
       method: "POST",
       headers: {
         "content-type": "application/json",
